@@ -46,3 +46,5 @@ out = F.run_all(lst, 0)
 print(len(out)) # prints '20'
 ```
 
+## To-Be implemented:
+- decorator
