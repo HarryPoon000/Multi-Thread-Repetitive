@@ -1,4 +1,4 @@
-# multithread-repetitive
+# Multi-Thread-repetitive
 A python module using multi-threading to speed up bulk and repetitive function calls, which can be imported after adding repetitive.py to your project directory
 ```python
 import repetitive
