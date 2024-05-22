@@ -1,5 +1,5 @@
 # multithread-repetitive
-A python module using multithreading to speed up bulk and repetitive function calls, which can be imported after adding repetitive.py to your project directory
+A python module using multi-threading to speed up bulk and repetitive function calls, which can be imported after adding repetitive.py to your project directory
 ```python
 import repetitive
 ```
@@ -15,17 +15,17 @@ Creates a `SingleFunc` object
 
 
 ### `run_all` function
-Creates `self.num_threads` number of threads and runs the 
+Creates `self.num_threads` number of threads and runs the function `self.func` using the arguments provided in `args_lst`. 
 ```python
 SingleFunc.run_all(args_lst, pbar_pos = 0, desc = 'progress') -> list
 ```
-- `args_lst`: list of tuples containing the arguments
-- `pbar_pos`: position of the `tqdm` progress bar; ignore if self.verbose is False (optional, defaults to 0)
-- `desc`: `string`, description of the `tqdm` progress bar; ignore if self.verbose is False (optional, defaults to "progress")
+- `args_lst`: list of tuples containing the arguments to the function
+- `pbar_pos`: position of the `tqdm` progress bar (optional, defaults to 0); ignore if self.verbose is False 
+- `desc`: `string`, description of the `tqdm` progress bar (optional, defaults to "progress"); ignore if self.verbose is False
   
 - returns: list of return values from the provided function; the length of the list is the same as the length of the input list `args_lst`
 
-# Example usage
+### Example
 ```python
 import time
 import threading
@@ -40,5 +40,4 @@ F = SingleFunc(func1, 5)
 
 lst = [() for _ in range(20)]
 F.run_all(lst, 0)
-
 ```
