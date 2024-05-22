@@ -69,11 +69,13 @@ if __name__ == "__main__":
     def func1():
         tqdm.write(str(threading.get_ident()))
         time.sleep(1)
+        return threading.get_ident()
         
     F = SingleFunc(func1, 5)
 
     lst = [() for _ in range(20)]
-    F.run_all(lst, 0)
+    out = F.run_all(lst, 0)
+    print(len(out)) # prints '20'
     
 ##    G = SingleFunc(func1, 4, False)
 ##    G.run_all(lst,0)
