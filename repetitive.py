@@ -13,21 +13,21 @@ class SingleFunc:
         
     # args_lst: list of tuples containing the arguments
     # pbar_pos: position of progress bar, ignore if self.verbose is False; refer to tqdm.tqdm() for more information
-    #
+    # desc: description of progress bar
     # returns: list of return values from the provided function
-    def run_all(self, args_lst, pbar_pos = None) -> list:
+    def run_all(self, args_lst, pbar_pos = 0, desc = 'progress') -> list:
         if self.verbose:
-            return self.__run_all_verbose(args_lst, pbar_pos)
+            return self.__run_all_verbose(args_lst, pbar_pos, desc = 'progress')
         else:
             return self.__run_all_nonVerbose(args_lst)
         
     
-    def __run_all_verbose(self, args_lst = None, pbar_pos = None) -> list:
+    def __run_all_verbose(self, args_lst = None, pbar_pos = 0, desc = 'progress') -> list:
         self.indicies = list(range(len(args_lst)))
         self.threads = []
         self.__values = [0 for _ in range(len(args_lst))]
 
-        with tqdm(total = len(args_lst), position = pbar_pos or 0, leave = None, desc = 'progress') as self.pbar:
+        with tqdm(total = len(args_lst), position = pbar_pos, leave = None, desc = desc) as self.pbar:
             for _ in range(self.num_threads):
                 thr = threading.Thread(target = self.__manager, args = (args_lst, ))
                 self.threads.append(thr)
