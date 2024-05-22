@@ -11,16 +11,19 @@ repetitive.SingleFunc(func, num_threads = 10, verbose = True)
 Creates a `SingleFunc` object
 - `func`: desired function to be run
 - `num_threads`: number of threads to be used (optional, defaults to 10)
-- `verbose`: `True` or `False`; if `True`, shows a progress bar using `tqdm` when running the function
+- `verbose`: `True` or `False` - if `True`, shows a progress bar using `tqdm` when running the function
+
 
 ### `run_all` function
+Creates `self.num_threads` number of threads and runs the 
 ```python
-run_all(args_lst, pbar_pos = None) -> list
+SingleFunc.run_all(args_lst, pbar_pos = 0, desc = 'progress') -> list
 ```
 - `args_lst`: list of tuples containing the arguments
-- `pbar_pos`: position of progress bar, ignore if self.verbose is False; refer to tqdm.tqdm() for more information
-
-- returns: list of return values from the provided function
+- `pbar_pos`: position of the `tqdm` progress bar; ignore if self.verbose is False (optional, defaults to 0)
+- `desc`: `string`, description of the `tqdm` progress bar; ignore if self.verbose is False (optional, defaults to "progress")
+  
+- returns: list of return values from the provided function; the length of the list is the same as the length of the input list `args_lst`
 
 # Example usage
 ```python
